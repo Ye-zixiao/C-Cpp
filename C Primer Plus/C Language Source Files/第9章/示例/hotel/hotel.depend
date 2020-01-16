@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1559729536 source:c:\users\yexin\desktop\c and c++\c language source files\第9章\示例\hotel\hotel.c
+	<stdio.h>
+	"hotel.h"
+
+1559729360 c:\users\yexin\desktop\c and c++\c language source files\第9章\示例\hotel\hotel.h
+
+1559729246 source:c:\users\yexin\desktop\c and c++\c language source files\第9章\示例\hotel\usehotel.c
+	<stdio.h>
+	"hotel.h"
+
