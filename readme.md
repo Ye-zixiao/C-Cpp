@@ -2,7 +2,7 @@
 
 C语言系列：
 
-* [C_Primer_Plus相关文档](/C_Primer_Plus/1指针.pdf)
+* [C_Primer_Plus相关文档](/C_Primer_Plus/)
 
 C++语言系列：
 
