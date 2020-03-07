@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1583563164 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_2\reversepolishnotation\memberfunc.cpp
+	"RPN.h"
+
+1583563195 c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_2\reversepolishnotation\rpn.h
+	<iostream>
+	<string>
+	<stack>
+
