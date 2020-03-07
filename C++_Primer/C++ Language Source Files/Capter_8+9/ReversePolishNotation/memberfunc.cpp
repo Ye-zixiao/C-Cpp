@@ -67,9 +67,7 @@ void RPN::suffix_expr(const std::string& expr)
 		{
 			std::string temp = std::to_string(stoi(expr.substr(expr.find_first_of("0123456789", pos))));
 			OperandStack.push(temp);
-			pos = expr.find_first_not_of("0123456789", pos);
-			/*当pos处在最后一个数字字符时向后面再找非数字字符会跳出到很大的位置，即发生了越界行为，
-			（可能find不仅会在string内找还有可能会找出在外面的，所以在判断时最好让pos<expr.size()作为判断条件）*/
+			pos = expr.find_first_not_of("0123456789", pos);//没有找到的话会返回一个string::npos
 			--pos;
 		}
 		else
