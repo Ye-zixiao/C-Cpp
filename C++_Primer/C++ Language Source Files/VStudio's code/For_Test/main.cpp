@@ -1,15 +1,17 @@
 #include<iostream>
-#include<string>
-#include<array>
 #include<vector>
+#include<iterator>
+#include<algorithm>
 using namespace::std;
 
 int main(void)
 {
-	vector<int> ivec(10);
-	for (decltype(ivec.size()) i = 0; i < ivec.size(); ++i)
-		ivec.push_back(i);
+	vector<int> ivec;
+	ivec.resize(10);
+	fill_n(ivec.begin(), ivec.size(), 10);
+	for (auto i : ivec)cout << i << ' '; cout << endl;
 
-	
-		
+	auto iter = back_inserter(ivec);
+
+	return 0;
 }
