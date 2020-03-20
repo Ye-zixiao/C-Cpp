@@ -2,7 +2,7 @@
 #include<string>
 #include"Sales_data.h"
 
-std::istream& read(Sales_data& item, std::istream& is)
+std::istream& operator>>(std::istream&is,Sales_data&item)
 {
 	double price;
 	is >> item.bookNo >> item.units_sold >> price;
@@ -10,7 +10,7 @@ std::istream& read(Sales_data& item, std::istream& is)
 	return is;
 }
 
-std::ostream& print(const Sales_data& item, std::ostream& os)
+std::ostream& operator<<(std::ostream&os,const Sales_data&item)
 {
 	return os << '\t' << item.bookNo << ' ' << item.units_sold << ' ' << item.revenue << ' ' << item.avg_price();
 }
@@ -28,4 +28,16 @@ const Sales_data& Sales_data::operator=(const Sales_data& item)
 	units_sold = item.units_sold;
 	revenue = item.revenue;
 	return *this;
+}
+
+bool isShorter_Isbn(const Sales_data& lhs, const Sales_data& rhs)
+{
+	return lhs.isbn() < rhs.isbn() ? true : false;
+}
+
+Sales_data& operator+(Sales_data&add,const Sales_data& item)
+{
+	add.units_sold += item.units_sold;
+	add.revenue += item.revenue;
+	return add;
 }
