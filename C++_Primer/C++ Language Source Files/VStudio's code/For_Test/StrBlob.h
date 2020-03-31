@@ -1,4 +1,5 @@
 #ifndef _STRBLOB_H_
+#define _STRBLOB_H_
 
 #include<string>
 #include<memory>
@@ -42,7 +43,6 @@ public:
 	cStrBlob_ptr cbegin(void) const;
 	cStrBlob_ptr cend(void) const;
 
-
 	size_t use_count(void)const {
 		return pstrvec.use_count();
 	}
@@ -56,12 +56,6 @@ private:
 	std::shared_ptr<std::vector<std::string>> pstrvec;
 };
 
-std::ostream& operator<<(std::ostream& os, const StrBlob& item)
-{
-	for (const auto& elem : *item.pstrvec)
-		os << elem << ' ';
-	return os;
-}
 
 class StrBlob_ptr {
 public:
@@ -72,6 +66,10 @@ public:
 	StrBlob_ptr& operator=(const StrBlob_ptr& item) {
 		wptr = item.wptr;
 		curr = item.curr;
+		return *this;
+	}
+	StrBlob_ptr& operator+(size_t n) {
+		this->curr += n;
 		return *this;
 	}
 	std::string& operator*() {
@@ -116,6 +114,10 @@ public:
 		this->wptr = item.wptr;
 		return *this;
 	}
+	cStrBlob_ptr& operator+(size_t n) {
+		curr += n;
+		return *this;
+	}
 	const std::string& operator*() const {
 		check();
 		return (*wptr.lock())[curr];
@@ -143,25 +145,5 @@ private:
 	size_t curr;
 	std::weak_ptr<std::vector<std::string>> wptr;
 };
-
-StrBlob::StrBlob_ptr StrBlob::begin(void)
-{
-	return StrBlob_ptr(*this);
-}
-
-StrBlob::StrBlob_ptr StrBlob::end(void)
-{
-	return StrBlob_ptr(*this, pstrvec->size());
-}
-
-StrBlob::cStrBlob_ptr StrBlob::cbegin(void) const
-{
-	return cStrBlob_ptr(*this);
-}
-
-StrBlob::cStrBlob_ptr StrBlob::cend(void) const
-{
-	return cStrBlob_ptr(*this, pstrvec->size());
-}
 
 #endif // !_STRBLOB_H_

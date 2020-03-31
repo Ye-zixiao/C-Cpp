@@ -57,7 +57,9 @@ public:
 			cout << endl;
 		}
 	}
-
+	const vector<string>& text(void) const{
+		return *text_ptr;
+	}
 private:
 	void input(ifstream& is);
 	shared_ptr<vector<line>> text_ptr;
@@ -143,6 +145,15 @@ ifstream& openfile(ifstream& is,const string&filename)
 	return is;
 }
 
+ostream& operator<<(ostream&os,const vector<string>&item)
+{
+	os << endl;
+	for (vector<string>::size_type i = 0; i < item.size(); ++i)
+		os << i + 1 << (i + 1 <= 9 ? " " : "") << ' ' << item[i] << endl;
+	os << endl;
+	return os;
+}
+
 int main(void)
 {
 	ifstream infile;
@@ -153,14 +164,25 @@ int main(void)
 		cin >> word;
 		if (word == "quit")
 			break;
-		if (word[0] == '\\') {
-			openfile(infile, word.substr(1));
-			file_database.reset(infile, word.substr(1));
-			continue;
+		switch(word[0])
+		{
+			case('\\'):
+			    try{
+                    openfile(infile, word.substr(1));
+                    file_database.reset(infile, word.substr(1));
+			    }
+				catch(runtime_error&err){
+                    cerr<<err.what()<<endl;
+				}
+				continue;
+			case('-'):
+				cout << file_database.text();
+				continue;
+			case('/'):
+				cout << file_database.query(word.substr(1));
+			default:
+				continue;
 		}
-		if (word[0] != '/')
-			continue;
-		cout << file_database.query(word.substr(1));
 	}
 	cout << "----->quit<-----" << endl;
 

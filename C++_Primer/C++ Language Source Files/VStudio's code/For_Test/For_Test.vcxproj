@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Sales_data.h" />
     <ClInclude Include="StrBlob.h" />
+    <ClInclude Include="TextQuery.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
