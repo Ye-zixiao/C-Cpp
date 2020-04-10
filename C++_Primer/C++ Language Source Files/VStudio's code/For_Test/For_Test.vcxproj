@@ -87,7 +87,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,12 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="func.cpp" />
+    <ClCompile Include="HasPtr.cpp" />
+    <ClCompile Include="Sales_data.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StrBlob.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="StrVec.cpp" />
+    <ClCompile Include="TextQuery.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HasPtr.h" />
+    <ClInclude Include="like_TextQuery.h" />
     <ClInclude Include="Sales_data.h" />
     <ClInclude Include="StrBlob.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="StrVec.h" />
     <ClInclude Include="TextQuery.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

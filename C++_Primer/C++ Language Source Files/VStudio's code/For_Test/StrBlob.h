@@ -4,6 +4,7 @@
 #include<string>
 #include<memory>
 #include<vector>
+#include<utility>
 #include<initializer_list>
 #include<stdexcept>
 
@@ -24,6 +25,7 @@ public:
 	size_type size(void) const { return pstrvec->size(); }
 	bool empty(void) const { return pstrvec->empty(); }
 	void push_back(const std::string& str) { pstrvec->push_back(str); }
+	void push_back(std::string&& str) { pstrvec->push_back(std::move(str)); }
 	void pop_back(void) { check(); pstrvec->pop_back(); }
 	std::string& front(void) { check(); return pstrvec->front(); }
 	const std::string& front(void) const { check(); return pstrvec->front(); }
