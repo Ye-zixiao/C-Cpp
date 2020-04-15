@@ -1,8 +1,13 @@
 #include"String.h"
-#define DEBUG
+//#define DEBUG
 std::allocator<char> String::alloc;
 
 /*--------------------一般操作-------------------------------*/
+
+const char*
+String::c_str(void)const {
+    return begin_iter;
+}
 
 String::size_type
 String::size(void) const {
@@ -185,7 +190,6 @@ String::range_initialize(const char* b, const char* e) {
 /*--------------------------类外函数------------------------*/
 
 std::ostream& operator<<(std::ostream& os, const String& str) {
-    for (auto iter = str.begin(); iter != str.end(); ++iter)
-        os << *iter;
+    std::for_each(str.begin(), str.end(), [&os](char ch) {os << ch; });
     return os;
 }

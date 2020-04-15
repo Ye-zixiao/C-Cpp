@@ -5,7 +5,10 @@ std::istream& operator>>(std::istream&is,Sales_data&item)
 {
 	double price;
 	is >> item.bookNo >> item.units_sold >> price;
-	item.revenue = price * item.units_sold;
+	if (is)
+		item.revenue = price * item.units_sold;
+	else
+		item = Sales_data();
 	return is;
 }
 
@@ -21,11 +24,20 @@ Sales_data& Sales_data::combine(const Sales_data& item)
 	return *this;
 }
 
-const Sales_data& Sales_data::operator=(const Sales_data& item)
+Sales_data& Sales_data::operator=(const Sales_data& item)
 {
 	bookNo = item.bookNo;
 	units_sold = item.units_sold;
 	revenue = item.revenue;
+	return *this;
+}
+
+Sales_data& 
+Sales_data::operator+=(const Sales_data& item) {
+	if (item.bookNo != bookNo)
+		throw std::runtime_error("Different Sales_data");
+	units_sold += item.units_sold;
+	revenue += item.revenue;
 	return *this;
 }
 

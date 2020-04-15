@@ -27,6 +27,7 @@ public:
     char& operator[](size_type n);
     String operator+(const String& str);
 
+    const char* c_str(void)const;
     size_type size(void) const;
     size_type capacity(void) const;
     void reverse(size_type n);
