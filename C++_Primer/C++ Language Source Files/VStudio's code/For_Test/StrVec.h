@@ -9,11 +9,15 @@
 
 
 class StrVec {
+    friend bool operator==(const StrVec&, const StrVec&);
+    friend bool operator!=(const StrVec&, const StrVec&);
+    friend bool operator<(const StrVec&, const StrVec&);
 public:
     using size_type = size_t;
 
     StrVec() {}
-    explicit StrVec(std::initializer_list<std::string> sl);
+    StrVec(std::initializer_list<std::string> sl);
+    StrVec(size_type n, const std::string& str=std::string());
     StrVec(const std::string* b, const std::string* e);
     ~StrVec();
 
@@ -24,19 +28,16 @@ public:
     StrVec(StrVec&& item)noexcept;
     StrVec& operator=(StrVec&& item)noexcept;
 
-
-    std::string& operator[](size_type n) {
-        if (n < 0 || n >= size())
-            throw std::out_of_range("Out of Range");
-        return *(begin_iter + n);
-    }
+    //StrVec& operator=(std::initializer_list<std::string> sl);//这里我让一个转换构造函数创建出一个临时类对象，然后用移动赋值运算符进行移动操作
+    std::string& operator[](size_type n);
+    const std::string& operator[](size_type n) const;
 
     void push_back(const std::string& str);
     void push_back(std::string&& str);
     void pop_back(void);
     size_type size(void) const;
     size_type capacity(void) const;
-    void resize(size_type n);
+    void resize(size_type n, const std::string& str = "");
     void reserve(size_type n);//设计策略：只能设置成>=当前真实size
     void shrink_to_fit(void);
     bool empty(void) const;
@@ -71,6 +72,7 @@ private:
     std::string* construct_end_iter = nullptr;
     std::string* end_iter = nullptr;
 };
+
 
 
 #endif

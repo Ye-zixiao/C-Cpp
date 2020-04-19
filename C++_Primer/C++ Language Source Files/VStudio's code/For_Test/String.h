@@ -9,6 +9,10 @@
 
 class String {
     friend std::ostream& operator<<(std::ostream& os, const String& str);
+    friend bool operator==(const String&, const String&);
+    friend bool operator!=(const String&, const String&);
+    friend bool operator<(const String&, const String&);
+    friend String operator+(const String&, const String&);
 public:
     using size_type = size_t;
 
@@ -17,15 +21,16 @@ public:
 
     /*¿½±´²Ù×÷*/
     String(const String& item);
-    String& operator=(const String& item);
+    String& operator=(const String& item) &;
 
     /*ÒÆ¶¯²Ù×÷*/
     String(String&& item)noexcept;
-    String& operator=(String&& item)noexcept;
+    String& operator=(String&& item) & noexcept ;
 
 
     char& operator[](size_type n);
-    String operator+(const String& str);
+    const char& operator[](size_type n) const;
+    String& operator+=(const String& str);
 
     const char* c_str(void)const;
     size_type size(void) const;
@@ -60,5 +65,8 @@ private:
 };
 
 extern std::ostream& operator<<(std::ostream& os, const String& str);
+extern bool operator==(const String&, const String&);
+extern bool operator!=(const String&, const String&);
+extern bool operator<(const String&, const String&);
 
 #endif

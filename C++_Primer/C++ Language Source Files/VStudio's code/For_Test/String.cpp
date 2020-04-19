@@ -1,5 +1,6 @@
 #include"String.h"
 //#define DEBUG
+//#define CTRDEBUG
 std::allocator<char> String::alloc;
 
 /*--------------------一般操作-------------------------------*/
@@ -10,7 +11,7 @@ String::c_str(void)const {
 }
 
 String::size_type
-String::size(void) const {
+String::size(void) const{
     return begin_iter ? construct_end_iter - begin_iter : 0;
 }
 
@@ -44,6 +45,9 @@ String::shrink_to_fit(void) {
 
 void
 String::push_back(const char& ch) {
+#ifdef DEBUG
+    std::cout << "push_back(const char&ch)" << std::endl;
+#endif
     chk_n_alloc();
     alloc.construct(construct_end_iter++, ch);
 }
@@ -72,19 +76,29 @@ String::resize(size_type n) {
 
 char&
 String::operator[](size_type n) {
-    return *(begin_iter + n);
+    return begin_iter[n];
 }
 
-String
-String::operator+(const String& str) {
-    String ret(*this);
-    for (const auto& elem : str)
-        ret.push_back(elem);
-    return ret;
+const char&
+String::operator[](size_type n) const {
+    return begin_iter[n];
 }
 
+String&
+String::operator+=(const String& item) {
+#ifdef CTRDEBUG
+    std::cout << "String& operator+=(const String&)" << std::endl;
+#endif
+    const auto new_begin = alloc.allocate(size() + item.size());
+    auto second_p = std::uninitialized_copy(begin_iter, construct_end_iter, new_begin);
+    auto last_p = std::uninitialized_copy(item.begin(), item.end(), second_p);
+    free();
+    begin_iter = new_begin;
+    construct_end_iter = end_iter = last_p;
+    return *this;
+}
 
-/*--------------------------拷贝控制成员和默认构造函数------------------------*/
+/*--------------------------拷贝控制成员和其他重要的成员------------------------*/
 String::String(const char* cp) {
 #ifdef DEBUG
     std::cout << "String(const char*)" << std::endl;
@@ -114,7 +128,7 @@ String::String(String&& item) noexcept :
 }
 
 String&
-String::operator=(const String& str) {
+String::operator=(const String& str) & {
 #ifdef DEBUG
     std::cout << "String& operator=(const String&str)" << std::endl;
 #endif
@@ -123,7 +137,7 @@ String::operator=(const String& str) {
 }
 
 String&
-String::operator=(String&& item)noexcept {
+String::operator=(String&& item) & noexcept {
 #ifdef DEBUG
     std::cout << "String& operator=(String&&)noexcept" << std::endl;
 #endif
@@ -141,6 +155,9 @@ String::operator=(String&& item)noexcept {
 void
 String::free(void) {
     if (begin_iter) {
+#ifdef DEBUG
+        std::cout << "free(): " << (void*)begin_iter << std::endl;
+#endif
         std::for_each(begin_iter, construct_end_iter, [](char& ch) {alloc.destroy(&ch); });
         alloc.deallocate(begin_iter, end_iter - begin_iter);
     }
@@ -192,4 +209,35 @@ String::range_initialize(const char* b, const char* e) {
 std::ostream& operator<<(std::ostream& os, const String& str) {
     std::for_each(str.begin(), str.end(), [&os](char ch) {os << ch; });
     return os;
+}
+
+bool
+operator==(const String& lhs, const String& rhs) {
+    if (lhs.size() != rhs.size())
+        return false;
+    for (decltype(lhs.size()) i = 0, size = lhs.size(); i < size; ++i)
+        if (lhs[i] != rhs[i])
+            return false;
+    return true;
+}
+
+bool 
+operator!=(const String& lhs, const String& rhs) {
+    return !(lhs == rhs);
+}
+
+bool 
+operator<(const String& lhs, const String& rhs) {
+    auto mid = (lhs.size() < rhs.size() ? lhs.size() : rhs.size());
+    for (String::size_type i = 0; i < mid; ++i)
+        if (lhs[i] < rhs[i])return true;
+        else if (lhs[i] > rhs[i])return false;
+    return lhs.size() < rhs.size() ? true : false;
+}
+
+String 
+operator+(const String& lhs, const String& rhs) {
+    String temp(lhs);
+    temp += rhs;
+    return temp;
 }

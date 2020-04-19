@@ -52,17 +52,15 @@ StrVec::shrink_to_fit(void) {
 }
 
 void
-StrVec::resize(size_type n) {
+StrVec::resize(size_type n,const std::string&str) {
     if (n >= size()) {
         if (n > capacity())
-            move_mem(n);
-        const auto delta_size = n - size();
-        for (size_t i = 0; i < delta_size; ++i)
-            alloc.construct(construct_end_iter++, "");
+            move_mem(n * 2);
+        while (construct_end_iter != begin_iter + n)
+            alloc.construct(construct_end_iter++, str);
     }
     else {
-        const auto delta_size = n - size();
-        for (size_t i = 0; i < delta_size; ++i)
+        while (construct_end_iter != begin_iter + n)
             alloc.destroy(--construct_end_iter);
     }
 }
@@ -77,6 +75,12 @@ StrVec::clear(void) {
 /*-----------------------拷贝控制成员和其他构造函数-------------------*/
 StrVec::StrVec(std::initializer_list<std::string> sl) {//编写程序不好的习惯就是重复大量相同的代码
     range_initialize(sl.begin(), sl.end());
+}
+
+StrVec::StrVec(size_type n, const std::string& str) :
+    begin_iter(alloc.allocate(n)), end_iter(begin_iter + n), construct_end_iter(begin_iter) {
+    while (construct_end_iter != end_iter)
+        alloc.construct(construct_end_iter++, str);
 }
 
 StrVec::StrVec(const std::string* b, const std::string* e) {
@@ -111,9 +115,11 @@ StrVec::StrVec(StrVec&& item)noexcept :
 
 StrVec&
 StrVec::operator=(StrVec&& item)noexcept {
+#define DEBUG
 #ifdef DEBUG
     std::cout << "StrVec& operator=(StrVec&&)noexcept" << std::endl;
 #endif
+#undef DEBUG
     if (this != &item) {
         free();
         begin_iter = std::move(item.begin_iter);
@@ -124,22 +130,45 @@ StrVec::operator=(StrVec&& item)noexcept {
     return *this;
 }
 
+//StrVec&
+//StrVec::operator=(std::initializer_list<std::string> sl) {
+//    range_initialize(sl.begin(), sl.end());
+//    return *this;
+//}
+
+//StrVec&//这样显式的重载赋值运算符不如借助隐式的转换构造+移动赋值去完成
+//StrVec::operator=(std::initializer_list<std::string> sl) {
+//    *this = StrVec(sl);
+//    return *this;
+//}
+
+std::string&
+StrVec::operator[](size_type n) {
+    return begin_iter[n];
+}
+
+const std::string&
+StrVec::operator[](size_type n)const {
+    return begin_iter[n];
+}
+
+
 /*-----------------------私有工具函数-------------------*/
 //使用for_each+lambda表达式编写free()
 void
 StrVec::free(void) {
     if (begin_iter) {
         std::for_each(begin_iter, construct_end_iter, [](std::string& p) {alloc.destroy(&p); });//alloc是函数体外定义的静态变量，当然可以在lambda表达式中使用
-        //for_each算法给lambda表达式参数列表的是序列元素的引用
+        alloc.deallocate(begin_iter, end_iter - begin_iter);
+    }
+}
+//for_each算法给lambda表达式参数列表的是序列元素的引用
         /*
             等价于：
             for(auto iter=begin_iter;iter!=construce_end_iter;++iter)
                 *iter----->[](std::string& ref){alloc.destroy(&p);}
             //for_each解引用序列中元素（得到的是可修改的左值），然后将这个左值给了lambda表达式
         */
-        alloc.deallocate(begin_iter, end_iter - begin_iter);
-    }
-}
 /*使用不同while循环编写free()
 void
 StrVec::free(void) {
@@ -175,12 +204,35 @@ StrVec::move_mem(size_type n) {
 
 void
 StrVec::range_initialize(const std::string* b, const std::string* e) {
-    auto ret = alloc.allocate(e - b);
-    auto new_end = std::uninitialized_copy(b, e, ret);
+    auto ret = alloc_n_cpy(b, e);
     free();
-    begin_iter = ret;
-    end_iter = construct_end_iter = new_end;
+    begin_iter = ret.first;
+    end_iter = construct_end_iter = ret.second;
 }
 
 
 /*------------------------类外函数-----------------------*/
+
+bool 
+operator==(const StrVec& lhs, const StrVec& rhs) {
+    if (lhs.size() != rhs.size())
+        return false;
+    for (decltype(lhs.size()) i = 0, size = lhs.size(); i < size; ++i)
+        if (lhs[i] != rhs[i])
+            return false;
+    return true;
+}
+
+bool 
+operator!=(const StrVec& lhs,const StrVec& rhs) {
+    return !(rhs == lhs);
+}
+
+bool 
+operator<(const StrVec& lhs, const StrVec& rhs) {
+    auto mid = (lhs.size() < rhs.size() ? lhs.size() : rhs.size());
+    for (StrVec::size_type i = 0; i < mid; ++i)
+        if (lhs[i] < rhs[i])return true;
+        else if (lhs[i] > rhs[i])return false;
+    return lhs.size() < rhs.size() ? true : false;
+}

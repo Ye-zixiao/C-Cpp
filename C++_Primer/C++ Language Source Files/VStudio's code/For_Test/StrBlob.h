@@ -10,6 +10,8 @@
 
 class StrBlob {
 	friend std::ostream& operator<<(std::ostream& os, const StrBlob& item);
+	friend bool operator==(const StrBlob&, const StrBlob&);
+	friend bool operator!=(const StrBlob&, const StrBlob&);
 	friend class cStrBlob_ptr;
 	friend class StrBlob_ptr;
 public:
@@ -60,34 +62,51 @@ private:
 
 
 class StrBlob_ptr {
+	friend bool operator==(const StrBlob_ptr&, const StrBlob_ptr&);
+	friend bool operator!=(const StrBlob_ptr&, const StrBlob_ptr&);
+	friend StrBlob_ptr operator+(const StrBlob_ptr&, size_t n);
+	friend StrBlob_ptr operator-(const StrBlob_ptr&, size_t n);
 public:
 	StrBlob_ptr() = default;
 	StrBlob_ptr(StrBlob&item,size_t c=0):
 		wptr(item.pstrvec),curr(c){}
 
-	StrBlob_ptr& operator=(const StrBlob_ptr& item) {
-		wptr = item.wptr;
-		curr = item.curr;
-		return *this;
-	}
-	StrBlob_ptr& operator+(size_t n) {
-		this->curr += n;
-		return *this;
-	}
 	std::string& operator*() {
 		check();
 		return (*wptr.lock())[curr];
 	}
-	bool operator!=(const StrBlob_ptr& item) {
-		return item.wptr.lock() != wptr.lock() || curr != item.curr;
+	std::string* operator->(void) {
+		check();
+		return &this->operator*();
 	}
+
+
+	StrBlob_ptr& operator+=(size_t n) {
+		curr += n;
+		return *this;
+	}
+	StrBlob_ptr& operator-=(size_t n) {
+		curr -= n;
+		return *this;
+	}
+
 	StrBlob_ptr& operator++() {
 		++curr;
 		return *this;
 	}
+	StrBlob_ptr operator++(int) {
+		StrBlob_ptr temp(*this);
+		++* this;
+		return temp;
+	}
 	StrBlob_ptr& operator--() {
 		--curr;
 		return *this;
+	}
+	StrBlob_ptr operator--(int) {
+		StrBlob_ptr temp(*this);
+		--* this;
+		return temp;
 	}
 
 	bool expired(void) const{
@@ -105,7 +124,10 @@ private:
 	size_t curr;
 };
 
+
+
 class cStrBlob_ptr {
+	friend cStrBlob_ptr operator+(const cStrBlob_ptr&, size_t n);
 public:
 	cStrBlob_ptr() = default;
 	cStrBlob_ptr(const StrBlob& item, size_t cu = 0):
@@ -124,14 +146,35 @@ public:
 		check();
 		return (*wptr.lock())[curr];
 	}
+	const std::string* operator->()const {
+		return &this->operator*();
+	}
+
+
 	cStrBlob_ptr& operator--() {
 		--curr;
 		return *this;
+	}
+	cStrBlob_ptr operator--(int) {
+		cStrBlob_ptr temp(*this);
+		--curr;
+		return temp;
 	}
 	cStrBlob_ptr& operator++() {
 		++curr;
 		return *this;
 	}
+	cStrBlob_ptr operator++(int) {
+		cStrBlob_ptr temp(*this);
+		++curr;
+		return *this;
+	}
+
+	cStrBlob_ptr& operator+=(size_t n) {
+		curr += n;
+		return *this;
+	}
+
 	bool operator!=(const cStrBlob_ptr& item) const {
 		return wptr.lock() != item.wptr.lock() || curr != item.curr;
 	}
