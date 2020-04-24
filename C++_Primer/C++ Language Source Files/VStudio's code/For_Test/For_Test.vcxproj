@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HasPtr.cpp" />
+    <ClCompile Include="Quote.cpp" />
     <ClCompile Include="Sales_data.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="StrBlob.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="HasPtr.h" />
     <ClInclude Include="like_TextQuery.h" />
+    <ClInclude Include="Quote.h" />
     <ClInclude Include="Sales_data.h" />
     <ClInclude Include="StrBlob.h" />
     <ClInclude Include="String.h" />

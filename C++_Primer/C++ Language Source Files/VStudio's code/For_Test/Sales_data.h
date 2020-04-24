@@ -5,7 +5,7 @@
 #include<string>
 
 class Sales_data {
-	friend std::istream& operator>>(std::istream&is,Sales_data&item);
+	friend std::istream& operator>>(std::istream& is, Sales_data& item);
 	friend std::ostream& operator<<(std::ostream& os, const Sales_data& item);
 	friend Sales_data operator+(const Sales_data& lhs, const Sales_data& rhs);
 	friend bool operator==(const Sales_data& lhs, const Sales_data& rhs);
@@ -23,6 +23,13 @@ public:
 	Sales_data& operator=(const Sales_data&);
 	Sales_data& operator=(const std::string&);
 	Sales_data& operator+=(const Sales_data&);
+
+	operator std::string()const {
+		return bookNo;
+	}
+	operator double()const {
+		return revenue;
+	}
 
 	std::string isbn(void)const { return bookNo; }
 	Sales_data& combine(const Sales_data& item);
