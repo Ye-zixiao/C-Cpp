@@ -1,14 +1,22 @@
 #include<iostream>
-#include"Quote.h"
-#include<memory>
+#include<fstream>
+#include"TextQuery.h"
+#include"Query.h"
 using namespace::std;
 
 int main(void)
 {
-	shared_ptr<Quote> sp(new Bulk_Quote());
-	shared_ptr<Quote> sp_cpy(make_shared<Bulk_Quote>());
-	//Quote item = Bulk_Quote;//因为item既不是引用也不是指针，所以它的动态类型永远是静态类型
-	Bulk_Quote bulk;
-	Quote item(bulk);
-	item = bulk;
+	ifstream infile("infile.txt", ifstream::in);
+	if (!infile) {
+		cerr << "Fuck" << endl;
+		return -1;
+	}
+	TextQuery text(infile);
+
+	Query q = Query("mother") & Query("should") | Query("will");
+	cout << q.eval(text);
+	cout << endl;
+	cout << q.eval(text, 3, 11);//[lower,upper]
+
+	return 0;
 }

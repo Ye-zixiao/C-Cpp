@@ -24,9 +24,10 @@ public:
 
 private:
 	void input(std::ifstream& is);
-	std::shared_ptr<std::vector<std::string>> pfile;
-	std::unordered_map<std::string, std::shared_ptr<lines>> word_lines;
+	std::shared_ptr<std::vector<std::string>> pfile;					//记录输入文件的每一行
+	std::unordered_map<std::string, std::shared_ptr<lines>> word_lines;	//记录每一个单词所出现的行号
 };
+
 
 class QueryResult {
 	friend std::ostream& operator<<(std::ostream& os, const QueryResult& item);

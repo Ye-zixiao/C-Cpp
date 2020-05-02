@@ -34,7 +34,7 @@ QueryResult TextQuery::query(const std::string& str) const
 
 std::ostream& operator<<(std::ostream& os, const QueryResult& item)
 {
-	os << item.word << " occurs " << item.pline_set->size() << std::endl;
+	os << item.word << " occurs " << item.pline_set->size() << " times:" << std::endl;
 	for (const auto& line_No : *item.pline_set)
 		os << "\t|___line(" << line_No + 1 << ")  " << (*item.pfile)[line_No] << std::endl;
 	return os;

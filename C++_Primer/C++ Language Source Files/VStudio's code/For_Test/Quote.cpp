@@ -1,41 +1,167 @@
 #include"Quote.h"
-
+//#define DEBUG
 /*-----------------------基类的成员函数------------------------*/
 
-std::string
+String
 Quote::isbn(void) const {
 	return bookNo;
 }
 
-double 
+double
 Quote::net_price(std::size_t n) const {
-	return price * n;
+	return n * price;
 }
 
-//原策略
+Quote::Quote(const Quote& item) :
+	bookNo(item.bookNo), price(item.price) {
+#ifdef DEBUG
+	std::cout << "Quote(const Quote&)" << std::endl;
+#endif
+}
+
+Quote::Quote(Quote&& item) noexcept :
+	bookNo(std::move(item.bookNo)), price(std::move(item.price)) {
+#ifdef DEBUG
+	std::cout << "Quote(Quote&&)" << std::endl;
+#endif
+}
+
+Quote::~Quote() {
+#ifdef DEBUG
+	std::cout << "~Quote()" << std::endl;
+#endif
+}
+
+Quote&
+Quote::operator=(const Quote& item) {
+	if (this != &item){
+		bookNo = item.bookNo;
+		price = item.price;
+	}
+#ifdef DEBUG
+	std::cout << "Quote& operator=(const Quote&)" << std::endl;
+#endif
+	return *this;
+}
+
+Quote&
+Quote::operator=(Quote&& item)noexcept {
+	if (this != &item){
+		bookNo = std::move(item.bookNo);
+		price = std::move(item.price);
+	}
+#ifdef DEBUG
+	std::cout << "Quote& operator=(Quote&&)" << std::endl;
+#endif
+	return *this;
+}
+
+/*-----------------------派生类的成员函数------------------------*/
+
 double
 Bulk_Quote::net_price(std::size_t n) const {
-	return n >= min_cnt ? (1 - discount) * price * n : price * n;
+	return n >= quantity ? n * price * (1 - discount) : n * price;
 }
-//练习题新策略
-//double
-//Bulk_Quote::net_price(std::size_t n) const {
-//	double non_over = (1 - discount) * price * n;//不管是否超出，先以未超出的方式计算，若超出了就补上去超出的部分
-//	return n <= min_cnt ? non_over : non_over + (n - min_cnt) * price * discount;
-//}
 
-//其实没有必要为了特别的语法，使用条件运算符，若使用if-else能做到语言简洁，那么就是用if-else
-//double
-//Bulk_Quote::net_price(std::size_t n) const {
-//	if (n >= min_cnt)
-//		return min_cnt * price * (1 - discount) + (n - min_cnt) * price;
-//	else
-//		return min_cnt * price * (1 - discount);
-//}
+double
+Mulk_Quote::net_price(std::size_t n) const {
+	if (n >= quantity)
+		return quantity * price * (1 - discount) + (n - quantity) * price;
+	else
+		return n * price * (1 - discount);
+}
 
+Disc_Quote::Disc_Quote(const Disc_Quote& item) :
+	Quote(item), discount(item.discount), quantity(item.quantity) {
+#ifdef DEBUG
+	std::cout << "Disc_Quote(const Disc_Quote*)" << std::endl;
+#endif
+}
+
+Disc_Quote::Disc_Quote(Disc_Quote&& item)noexcept :
+	Quote(std::move(item)), discount(std::move(item.discount)), quantity(std::move(item.quantity)) {
+#ifdef DEBUG
+	std::cout << "Disc_Quote(Disc_Quote&&)" << std::endl;
+#endif
+}
+
+Disc_Quote::~Disc_Quote() {
+#ifdef DEBUG
+	std::cout << "~Disc_Quote()" << std::endl;
+#endif
+}
+
+Disc_Quote&
+Disc_Quote::operator=(const Disc_Quote& item) {
+	if (this != &item){
+		Quote::operator=(item);
+		discount = item.discount;
+		quantity = item.quantity;
+	}
+#ifdef DEBUG
+	std::cout << "Disc_Quote& operator=(const Disc_Quote&)" << std::endl;
+#endif
+	return *this;
+}
+
+Disc_Quote&
+Disc_Quote::operator=(Disc_Quote&& item) noexcept {
+	if (this != &item){
+		Quote::operator=(std::move(item));
+		discount = std::move(item.discount);
+		quantity = std::move(item.quantity);
+	}
+#ifdef DEBUG
+	std::cout << "Disc_Quote& operator=(Disc_Quote&&)" << std::endl;
+#endif
+	return *this;
+}
+
+Bulk_Quote::Bulk_Quote(const Bulk_Quote& item) :
+	Disc_Quote(item) {
+#ifdef DEBUG
+	std::cout << "Bulk_Quote(const Bulk_Quote&)" << std::endl;
+#endif
+}
+
+Bulk_Quote::Bulk_Quote(Bulk_Quote&& item) noexcept:
+	Disc_Quote(std::move(item)){
+#ifdef DEBUG
+	std::cout << "Bulk_Quote(Bulk_Quote&&)" << std::endl;
+#endif
+}
+
+Bulk_Quote::~Bulk_Quote() {
+#ifdef DEBUG
+	std::cout << "~Bulk_Quote()" << std::endl;
+#endif
+}
+
+Bulk_Quote&
+Bulk_Quote::operator=(const Bulk_Quote& item) {
+	if(this!=&item)
+		Disc_Quote::operator=(item);
+#ifdef DEBUG
+	std::cout << "Bulk_Quote& operator=(const Bulk_Quote&)" << std::endl;
+#endif
+	return *this;
+}
+
+Bulk_Quote&
+Bulk_Quote::operator=(Bulk_Quote&& item)noexcept {
+	if(this!=&item)
+		Disc_Quote::operator=(std::move(item));
+#ifdef DEBUG
+	std::cout << "Bulk_Quote& operator=(Bulk_Quote&&)" << std::endl;
+#endif
+	return *this;
+}
 
 /*-----------------------非成员函数------------------------*/
 
-void print_total(std::ostream& os, const Quote& item, std::size_t n) {
-	os << "ISBN: " << item.isbn() << " # sold: " << n << " total due: " << item.net_price(n) << std::endl;
+double print_total(const Quote& item, std::size_t n) {
+	auto sum = item.net_price(n);
+	std::cout << "bookNo: " << item.isbn()
+		<< "\nnet_price: " << sum << std::endl;
+	return sum;
 }

@@ -39,6 +39,12 @@
     <ClCompile Include="Quote.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Query.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Query_derived.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sales_data.h">
@@ -63,6 +69,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Quote.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Query.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Query_base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Query_derived.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
