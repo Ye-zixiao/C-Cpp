@@ -1,5 +1,80 @@
-﻿  Query.cpp
-  Query_derived.cpp
-  main.cpp
-  正在生成代码...
-  For_Test.vcxproj -> C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Debug\For_Test.exe
+﻿  main.cpp
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(51,42): warning C4996: 'std::allocator<T>::destroy': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(51): message : 在编译 类 模板 成员函数“void Vector<std::string>::pop_back(void)”时
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(14): message : 查看对正在编译的函数 模板 实例化“void Vector<std::string>::pop_back(void)”的引用
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(10): message : 查看对正在编译的 类 模板 实例化“Vector<std::string>”的引用
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(303,8): warning C4996: 'std::allocator<T>::construct': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(298): message : 在编译 类 模板 成员函数“Iterator<T> Vector<T>::insert(Iterator<T>,T &&)”时
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(13): message : 查看对正在编译的函数 模板 实例化“Iterator<T> Vector<T>::insert(Iterator<T>,T &&)”的引用
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(307,8): warning C4996: 'std::allocator<T>::construct': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(213,51): warning C4996: 'std::allocator<T>::destroy': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(211): message : 在编译 类 模板 成员函数“void Vector<std::string>::clear(void)”时
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(18): message : 查看对正在编译的函数 模板 实例化“void Vector<std::string>::clear(void)”的引用
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(123,51): warning C4996: 'std::allocator<T>::destroy': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(121): message : 在编译 类 模板 成员函数“void Vector<std::string>::free(void)”时
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(35): message : 查看对正在编译的函数 模板 实例化“void Vector<std::string>::free(void)”的引用
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(185,51): warning C4996: 'std::allocator<T>::construct': warning STL4010: Various members of std::allocator are deprecated in C++17. Use std::allocator_traits instead of accessing these members directly. You can define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(182): message : 在编译 类 模板 成员函数“void Vector<std::string>::move_mem(Vector<std::string>::size_type)”时
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(251): message : 查看对正在编译的函数 模板 实例化“void Vector<std::string>::move_mem(Vector<std::string>::size_type)”的引用
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(141): message : 在编译 类 模板 成员函数“Vector<std::string>::Vector(std::initializer_list<T>)”时
+          with
+          [
+              T=std::string
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(10): message : 查看对正在编译的函数 模板 实例化“Vector<std::string>::Vector(std::initializer_list<T>)”的引用
+          with
+          [
+              T=std::string
+          ]
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\algorithm(3506,45): error C2676: 二进制“-”:“const _RanIt”不定义该运算符或到预定义运算符可接收的类型的转换
+          with
+          [
+              _RanIt=Iterator<int>
+          ]
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\algorithm(3511): message : 查看对正在编译的函数 模板 实例化“void std::sort<_RanIt,std::less<void>>(const _RanIt,const _RanIt,_Pr)”的引用
+          with
+          [
+              _RanIt=Iterator<int>,
+              _Pr=std::less<void>
+          ]
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\main.cpp(36): message : 查看对正在编译的函数 模板 实例化“void std::sort<Iterator<T>>(const _RanIt,const _RanIt)”的引用
+          with
+          [
+              T=int,
+              _RanIt=Iterator<int>
+          ]
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\algorithm(3506,5): error C2672: “_Sort_unchecked”: 未找到匹配的重载函数
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\algorithm(3506,1): error C2780: “void std::_Sort_unchecked(_RanIt,_RanIt,iterator_traits<_Iter>::difference_type,_Pr)”: 应输入 4 个参数，却提供了 3 个
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\algorithm(3476): message : 参见“std::_Sort_unchecked”的声明

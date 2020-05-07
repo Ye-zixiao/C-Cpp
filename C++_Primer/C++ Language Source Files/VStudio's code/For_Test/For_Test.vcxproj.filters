@@ -80,5 +80,11 @@
     <ClInclude Include="Query_derived.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Blob.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

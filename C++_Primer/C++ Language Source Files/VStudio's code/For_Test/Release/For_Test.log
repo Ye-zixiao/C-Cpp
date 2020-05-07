@@ -1,0 +1,12 @@
+﻿  Query_derived.cpp
+  HasPtr.cpp
+  Query.cpp
+  Quote.cpp
+  Sales_data.cpp
+  main.cpp
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(229,8): error C2039: "destroy": 不是 "std" 的成员
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\iterator(21): message : 参见“std”的声明
+  StrBlob.cpp
+  String.cpp
+  StrVec.cpp
+  TextQuery.cpp
