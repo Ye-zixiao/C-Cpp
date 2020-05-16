@@ -36,7 +36,8 @@ public:
 	Vector() = default;
 	Vector(std::initializer_list<T> il);
 	Vector(size_type n, value_type value = T());
-	Vector(const T* b, const T* e);
+	//Vector(const T* b, const T* e);
+	template<typename Iter> Vector(Iter b, Iter e);
 	Vector(const Vector<T>&);
 	Vector(Vector&& item)noexcept;
 	~Vector() { free(); }
@@ -50,6 +51,8 @@ public:
 	size_type capacity(void) const { return pbegin ? pend - pbegin : 0; }
 	void push_back(const T&value) { chk_n_alloc(); alloc.construct(plast++, value); }
 	void push_back(T&& value) { chk_n_alloc(); alloc.construct(plast++, std::move(value)); }
+	template<typename... Args>
+	void emplace_back(Args&&... args);
 	Iterator<T> insert(Iterator<T> iter, const T&);
 	Iterator<T> insert(Iterator<T> iter, T&&);	
 	/*insert成员函数的主要难点在于当我们给定一个迭代器后，若容器中的空间不足就会重新分配内容空间，原来指向它的指针就会不在有效。
@@ -153,7 +156,7 @@ Vector<T>::Vector(std::initializer_list<T> il) {
 
 template<typename T>
 Vector<T>::Vector(const Vector& item) {
-	auto ret = alloc_n_cpy(item.cbegin(), item.cend());
+	auto ret = alloc_n_cpy(item.pbegin, item.plast);
 	pbegin = ret.first;
 	plast = pend = ret.second;
 }
@@ -166,9 +169,14 @@ Vector<T>::Vector(size_type n, value_type value) {
 }
 
 
+//template<typename T>
+//Vector<T>::Vector(const T*b,const T*e):
+//	pbegin(alloc.allocate(e-b)),plast(std::uninitialized_copy(b,e,pbegin)),pend(plast){}
 template<typename T>
-Vector<T>::Vector(const T*b,const T*e):
+template<typename Iter>
+Vector<T>::Vector(Iter b, Iter e):
 	pbegin(alloc.allocate(e-b)),plast(std::uninitialized_copy(b,e,pbegin)),pend(plast){}
+
 
 template<typename T>
 T& Vector<T>::operator[](size_type n) {
@@ -206,7 +214,7 @@ void Vector<T>::reallocate(void) {
 template<typename T>
 Vector<T>& Vector<T>::operator=(const Vector& item) {
 	if (this != &item) {
-		auto ret = alloc_n_cpy(item.cbegin(), item.cend());
+		auto ret = alloc_n_cpy(item.pbegin, item.plast);
 		free();
 		pbegin = ret.first;
 		plast = pend = ret.second;
@@ -226,7 +234,7 @@ template<typename T>
 Vector<T>::Vector(Vector&& item) noexcept{
 	auto ret = alloc.allocate(item.size());
 	pbegin = ret;
-	plast = pend = std::uninitialized_copy(std::make_move_iterator(item.begin()), std::make_move_iterator(item.end()), ret);
+	plast = pend = std::uninitialized_copy(std::make_move_iterator(item.pbegin), std::make_move_iterator(item.plast), ret);
 	item.free();
 }
 
@@ -236,7 +244,7 @@ Vector<T>& Vector<T>::operator=(Vector&& item)noexcept {
 		free();
 		auto ret = alloc.allocate(item.size());
 		pbegin = ret;
-		plast = pend = std::uninitialized_copy(std::make_move_iterator(item.begin()), std::make_move_iterator(item.end()), ret);
+		plast = pend = std::uninitialized_copy(std::make_move_iterator(item.pbegin), std::make_move_iterator(item.plast), ret);
 		item.free();
 	}
 	return *this;
@@ -320,6 +328,13 @@ Iterator<T> Vector<T>::insert(Iterator<T> iter, T&& value) {
 		pbegin[pos] = std::move(value);
 	}
 	return Iterator(*this, pos);
+}
+
+template<typename T>
+template<typename... Args>
+void Vector<T>::emplace_back(Args&&... args) {
+	chk_n_alloc();
+	alloc.construct(plast++, std::forward<Args>(args)...);
 }
 
 /*-----------------------------Iterator的函数定义---------------------------*/

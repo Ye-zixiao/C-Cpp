@@ -34,6 +34,8 @@ public:
 
     void push_back(const std::string& str);
     void push_back(std::string&& str);
+    template<typename... Args>
+    void emplace_back(Args&&... args);
     void pop_back(void);
     size_type size(void) const;
     size_type capacity(void) const;
@@ -74,5 +76,10 @@ private:
 };
 
 
+template<typename... Args>                          //只要是模板，则模板的定义必须和头文件在一起
+inline void StrVec::emplace_back(Args&&... args) {
+    chk_n_alloc();
+    alloc.construct(construct_end_iter++, std::forward<Args>(args)...);
+}
 
 #endif

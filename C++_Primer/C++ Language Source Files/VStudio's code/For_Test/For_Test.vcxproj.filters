@@ -45,6 +45,9 @@
     <ClCompile Include="Query_derived.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="templateBuild.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sales_data.h">
@@ -84,6 +87,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugDelete.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tupleTextQuery.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

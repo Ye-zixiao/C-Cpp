@@ -8,6 +8,7 @@
 #include<set>
 #include<fstream>
 #include<sstream>
+#include"DebugDelete.h"
 
 class QueryResult;
 
@@ -16,7 +17,7 @@ public:
 	using line_no = std::vector<std::string>::size_type;
 	using lines = std::set<line_no>;
 	TextQuery(std::ifstream& is) :
-		pfile(new std::vector<std::string>()) {
+		pfile(new std::vector<std::string>(),DebugDelete()) {
 		input(is);
 	}
 

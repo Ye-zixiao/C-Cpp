@@ -15,7 +15,7 @@ void TextQuery::input(std::ifstream& is)
 		for (std::string word; line_stream >> word;) {
 			auto& line_no_set = this->word_lines[word];
 			if (!line_no_set)
-				line_no_set.reset(new lines());
+				line_no_set.reset(new lines(), DebugDelete());
 			line_no_set->insert(cnt);
 		}
 	}

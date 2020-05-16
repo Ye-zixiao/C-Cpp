@@ -4,12 +4,16 @@
 #include<iostream>
 #include<string>
 
+template<typename>
+struct std::hash;
+
 class Sales_data {
 	friend std::istream& operator>>(std::istream& is, Sales_data& item);
 	friend std::ostream& operator<<(std::ostream& os, const Sales_data& item);
 	friend Sales_data operator+(const Sales_data& lhs, const Sales_data& rhs);
 	friend bool operator==(const Sales_data& lhs, const Sales_data& rhs);
 	friend bool operator!=(const Sales_data& lhs, const Sales_data& rhs);
+	friend struct std::hash<Sales_data>;
 public:
 	Sales_data(const std::string& bn, unsigned cnt, double price) :
 		bookNo(bn), units_sold(cnt), revenue(price* units_sold) {}
@@ -50,5 +54,20 @@ extern Sales_data operator+(const Sales_data&, const Sales_data&);
 extern bool operator==(const Sales_data&, const Sales_data&);
 extern bool operator!=(const Sales_data&, const Sales_data&);
 extern bool isShorter_Isbn(const Sales_data& lhs, const Sales_data& rhs);
+
+namespace std {
+
+template<>
+struct hash<Sales_data> {
+	typedef size_t result_type;
+	typedef Sales_data argument_type;
+
+	result_type operator()(const Sales_data& item) const {
+		return hash<string>()(item.bookNo) ^ hash<unsigned>()(item.units_sold) ^
+			hash<double>()(item.revenue);
+	}
+};
+
+}
 
 #endif

@@ -2,6 +2,7 @@
 #define _BLOB_H_
 
 #include<memory>
+#include"Memory.h"
 #include<vector>
 #include<utility>
 #include<initializer_list>
@@ -29,10 +30,13 @@ public:
 	typedef typename std::vector<T>::size_type size_type;
 
 	Blob() :pdata(new std::vector<T>()) {}
+	template<typename Iter> Blob(Iter b, Iter e):
+		pdata(new std::vector<T>(b,e)){}
 	Blob(std::initializer_list<T> il) :
 		pdata(new std::vector<T>(il)) {}
 
-	T& operator[](size_type n) const;
+	T& operator[](size_type n);
+	const T& operator[](size_type n)const;
 	size_type size(void)const { return pdata->size(); }
 	bool empty(void) const { return pdata->empty(); }
 	void push_back(T&& value) { pdata->push_back(std::move(value)); }
@@ -45,6 +49,7 @@ public:
 	Blob_cptr<T> cend(void);
 
 private:
+	//Shared_ptr<std::vector<T>> pdata;//使用自定义的Shared_ptr替换STL的shared_ptr
 	std::shared_ptr<std::vector<T>> pdata;
 };
 
@@ -115,7 +120,14 @@ inline bool operator!=(const Blob<T>& lhs, const Blob<T>& rhs) {
 }
 
 template<typename T>
-T& Blob<T>::operator[](size_type n) const{
+T& Blob<T>::operator[](size_type n){
+	if (n >= size())
+		throw std::out_of_range("Out of range");
+	return (*pdata)[n];
+}
+
+template<typename T>
+const T& Blob<T>::operator[](size_type n)const {
 	if (n >= size())
 		throw std::out_of_range("Out of range");
 	return (*pdata)[n];

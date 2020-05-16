@@ -87,7 +87,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,10 +148,13 @@
     <ClCompile Include="StrBlob.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="StrVec.cpp" />
+    <ClCompile Include="templateBuild.cpp" />
     <ClCompile Include="TextQuery.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blob.h" />
+    <ClInclude Include="DebugDelete.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Query_derived.h" />
     <ClInclude Include="HasPtr.h" />
     <ClInclude Include="like_TextQuery.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="String.h" />
     <ClInclude Include="StrVec.h" />
     <ClInclude Include="TextQuery.h" />
+    <ClInclude Include="tupleTextQuery.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
