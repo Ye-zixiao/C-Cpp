@@ -1,0 +1,13 @@
+﻿  templateBuild.cpp
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(275,8): error C2039: "destroy": 不是 "std" 的成员
+F:\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.25.28610\include\iterator(21): message : 参见“std”的声明
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(283,9): error C2955: “Iterator”: 使用 类 模板 需要 模板 参数列表
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(91): message : 参见“Iterator”的声明
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(288,9): error C2955: “Iterator”: 使用 类 模板 需要 模板 参数列表
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(91): message : 参见“Iterator”的声明
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(309,9): error C2955: “Iterator”: 使用 类 模板 需要 模板 参数列表
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(91): message : 参见“Iterator”的声明
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(330,9): error C2955: “Iterator”: 使用 类 模板 需要 模板 参数列表
+C:\Users\yexin\Desktop\C_Cpp\C++_Primer\C++ Language Source Files\VStudio's code\For_Test\Vector.h(91): message : 参见“Iterator”的声明
+  TextQuery.cpp
+  正在生成代码...

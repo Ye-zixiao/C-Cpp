@@ -98,5 +98,14 @@
     <ClInclude Include="tupleTextQuery.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Share_ptr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bad_ex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bad_exa.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

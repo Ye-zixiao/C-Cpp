@@ -3,9 +3,17 @@
 
 #include<iostream>
 #include<string>
+#include<stdexcept>
 
 template<typename>
 struct std::hash;
+
+class isbn_mismatch :public std::logic_error {
+public:
+	isbn_mismatch(const std::string&info,const std::string&lf,const std::string&rg):
+		std::logic_error(info),left(lf),right(rg){}
+	const std::string left, right;
+};
 
 class Sales_data {
 	friend std::istream& operator>>(std::istream& is, Sales_data& item);

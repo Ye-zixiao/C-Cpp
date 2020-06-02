@@ -29,11 +29,28 @@ public:
 	typedef T value_type;
 	typedef typename std::vector<T>::size_type size_type;
 
-	Blob() :pdata(new std::vector<T>()) {}
+	/*Blob() :pdata(new std::vector<T>()) {}
 	template<typename Iter> Blob(Iter b, Iter e):
 		pdata(new std::vector<T>(b,e)){}
 	Blob(std::initializer_list<T> il) :
-		pdata(new std::vector<T>(il)) {}
+		pdata(new std::vector<T>(il)) {}*/
+
+	Blob()try :pdata(new std::vector<T>()) {}//Ê¹ÓÃº¯ÊýtryÓï¾ä¿é
+	catch (const std::bad_alloc& err) {
+		pdata = nullptr;
+		std::cerr << err.what() << std::endl;
+	}
+	template<typename Iter>
+	Blob(Iter b, Iter e)try :pdata(new std::vector<T>(b, e)) {}
+	catch (const std::bad_alloc& err) {
+		pdata = nullptr;
+		std::cerr << err.what() << std::endl;
+	}
+	Blob(std::initializer_list<T> il)try :pdata(new std::vector<T>(il)) {}
+	catch (const std::bad_alloc& err) {
+		pdata = nullptr;
+		std::cerr << err.what() << std::endl;
+	}
 
 	T& operator[](size_type n);
 	const T& operator[](size_type n)const;
@@ -67,8 +84,11 @@ public:
 	typedef typename std::vector<T>::size_type size_type;
 
 	Blob_ptr() = default;
-	Blob_ptr(Blob<T>&item,size_type n=0):
-		wptr(item.pdata),curr(n){}
+	Blob_ptr(Blob<T>&item,size_type n=0)try:
+		wptr(item.pdata), curr(n){}
+	catch (const std::bad_alloc& err) {
+		std::cerr << err.what() << std::endl;
+	}
 
 	T& operator*()const;
 	T* operator->()const;
@@ -97,8 +117,11 @@ public:
 	typedef typename std::vector<T>::size_type size_type;
 
 	Blob_cptr() = default;
-	Blob_cptr(const Blob<T>& item, size_type n=0):
-		cwptr(item.pdata),curr(n){}
+	Blob_cptr(const Blob<T>& item, size_type n=0)try:
+		cwptr(item.pdata), curr(n){}
+	catch (const std::bad_alloc& err) {
+		std::cerr << err.what() << std::endl;
+	}
 
 	const T& operator*() const;
 	Blob_cptr<T>& operator++();

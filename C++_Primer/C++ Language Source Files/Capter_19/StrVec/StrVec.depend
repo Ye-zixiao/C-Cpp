@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1590908119 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_19\strvec\main.cpp
+	<iostream>
+	"StrVec.h"
+	<string>
+
+1590908034 c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_19\strvec\strvec.h
+	<string>
+	<utility>
+	<memory>
+	<algorithm>
+	<iostream>
+

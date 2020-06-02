@@ -43,18 +43,18 @@ Sales_data& Sales_data::operator=(const Sales_data& item)
 
 Sales_data&
 Sales_data::operator=(const std::string& str) {
-	bookNo = str;
-	units_sold = 0;
-	revenue = 0;
+	bookNo		= str;
+	units_sold	= 0;
+	revenue		= 0;
 	return *this;
 }
 
 Sales_data& 
 Sales_data::operator+=(const Sales_data& item) {
 	if (item.bookNo != bookNo)
-		throw std::runtime_error("Different Sales_data");
-	units_sold += item.units_sold;
-	revenue += item.revenue;
+		throw isbn_mismatch("Different bookNo", isbn(), item.isbn());
+	units_sold	+= item.units_sold;
+	revenue		+= item.revenue;
 	return *this;
 }
 

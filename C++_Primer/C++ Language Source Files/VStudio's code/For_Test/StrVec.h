@@ -4,8 +4,10 @@
 #include<iostream>
 #include<string>
 #include<memory>
+#include<cstdlib>
 #include<utility>
 #include<stdexcept>
+
 
 
 class StrVec {
@@ -51,7 +53,6 @@ public:
     std::string* end(void) const {
         return construct_end_iter;
     }
-
 
 private:
     /*    需求决定我们要编写什么样的工具函数

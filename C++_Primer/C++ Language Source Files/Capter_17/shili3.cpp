@@ -16,7 +16,7 @@ typedef tuple<
 	vector<Sales_data>::const_iterator,
 	vector<Sales_data>::const_iterator> matches;
 
-bool compare(const Sales_data& lhs, const Sales_data&rhs) {
+bool compare(const Sales_data& lhs, const Sales_data& rhs) {
 	return lhs.isbn() < rhs.isbn();
 }
 
@@ -58,8 +58,8 @@ struct matches3 {
 	size_type pos;
 	C_iter begin_citer;
 	C_iter end_citer;
-	matches3(size_type p,C_iter b,C_iter e):
-		pos(p),begin_citer(b),end_citer(e){}
+	matches3(size_type p, C_iter b, C_iter e) :
+		pos(p), begin_citer(b), end_citer(e) {}
 };
 
 vector<matches3>
@@ -87,8 +87,8 @@ int main(void)
 	for (const auto& store : result) {
 		if (get<1>(store) != get<2>(store))
 			cout << "store " << get<0>(store) << " sales: "
-				<< accumulate(get<1>(store), get<2>(store), Sales_data("Operating System"))
-				<< endl;
+			<< accumulate(get<1>(store), get<2>(store), Sales_data("Operating System"))
+			<< endl;
 	}
 
 	auto result2 = findBook2(files, "Operating System");

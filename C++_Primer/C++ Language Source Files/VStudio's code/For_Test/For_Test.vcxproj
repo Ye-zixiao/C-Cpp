@@ -152,6 +152,8 @@
     <ClCompile Include="TextQuery.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bad_ex.h" />
+    <ClInclude Include="Bad_exa.h" />
     <ClInclude Include="Blob.h" />
     <ClInclude Include="DebugDelete.h" />
     <ClInclude Include="Memory.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="StrBlob.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="StrVec.h" />
+    <ClInclude Include="Share_ptr.h" />
     <ClInclude Include="TextQuery.h" />
     <ClInclude Include="tupleTextQuery.h" />
     <ClInclude Include="Vector.h" />
