@@ -4,7 +4,12 @@
 #include<iostream>
 #include<string>
 #include<stdexcept>
+#include<vector>
 
+//extern class bookNo_ptr;
+class Sales_data;
+extern std::vector<Sales_data>::const_iterator more_than_avg(
+	const std::vector<Sales_data>&,double give);
 template<typename>
 struct std::hash;
 
@@ -22,11 +27,15 @@ class Sales_data {
 	friend bool operator==(const Sales_data& lhs, const Sales_data& rhs);
 	friend bool operator!=(const Sales_data& lhs, const Sales_data& rhs);
 	friend struct std::hash<Sales_data>;
+	//friend class bookNo_ptr;
+	friend std::vector<Sales_data>::const_iterator more_than_avg(const std::vector<Sales_data>&,
+		double give);
 public:
 	Sales_data(const std::string& bn, unsigned cnt, double price) :
 		bookNo(bn), units_sold(cnt), revenue(price* units_sold) {}
 	Sales_data() :Sales_data("", 0, 0) {}
 	explicit Sales_data(const std::string& bn) :Sales_data(bn, 0, 0) {}
+	~Sales_data(){}
 
 	//explicit Sales_data(std::istream& is) :Sales_data() {//关键字explicit禁止转换构造函数的使用（即禁止当前类类型的隐式的类类型转换）
 	//	read(*this, is);

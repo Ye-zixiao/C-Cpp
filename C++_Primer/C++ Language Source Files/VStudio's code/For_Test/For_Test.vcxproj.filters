@@ -107,5 +107,14 @@
     <ClInclude Include="Bad_exa.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="remould_TextQuery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="externC.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

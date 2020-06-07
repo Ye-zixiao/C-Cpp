@@ -156,6 +156,7 @@
     <ClInclude Include="Bad_exa.h" />
     <ClInclude Include="Blob.h" />
     <ClInclude Include="DebugDelete.h" />
+    <ClInclude Include="externC.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Query_derived.h" />
     <ClInclude Include="HasPtr.h" />
@@ -163,12 +164,14 @@
     <ClInclude Include="Query.h" />
     <ClInclude Include="Query_base.h" />
     <ClInclude Include="Quote.h" />
+    <ClInclude Include="remould_TextQuery.h" />
     <ClInclude Include="Sales_data.h" />
     <ClInclude Include="StrBlob.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="StrVec.h" />
     <ClInclude Include="Share_ptr.h" />
     <ClInclude Include="TextQuery.h" />
+    <ClInclude Include="Token.h" />
     <ClInclude Include="tupleTextQuery.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
