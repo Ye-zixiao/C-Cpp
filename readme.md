@@ -8,4 +8,3 @@ C++语言系列：
 
 * [C++_Primer相关文档](/C++_Primer/)
 * [Essential_C++相关文档](/Essential_C++/)
-* [baidu](https://www.baidu.com/)
