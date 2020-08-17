@@ -1,22 +1,18 @@
 #include<iostream>
-#include<string>
-#include<memory>
-#include"PizzaStore.h"
-#include"Pizza.h"
+#include<algorithm>
+#include<vector>
 using namespace std;
 
 
 int main(void)
 {
-	NYStylePizzaStore nyStore;
-	ChicagoStylePizzaStore ccStore;
+	vector<int> ivec;
+	auto biter = back_inserter(ivec);
 
-	shared_ptr<Pizza> pizza = nyStore.orderPizza("cheese");
-	cout << "Ethan ordered a " << pizza->getName() << endl;
-
-	cout << endl;
-	pizza = ccStore.orderPizza("cheese");
-	cout << "Joel ordered a " << pizza->getName() << endl;
+	for (int i = 0; i < 10; i++)
+		biter = i;
+	for (const auto& elem : ivec)
+		cout << elem << ' '; cout << endl;
 
 	return 0;
 }
