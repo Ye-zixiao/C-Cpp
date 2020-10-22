@@ -1,23 +1,25 @@
 #include <iostream>
-#include <cstdio>
+#include <typeinfo>
 
-class Test{
+class Base{
 public:
-    virtual ~Test(){}
-
-    float x(){return _x;}
-    float y(){return _y;}
-    virtual float z(){return _z;}
-
-private:
-    float _x,_y,_z;
+	virtual void func() const = 0 {
+		std::cout<<std::endl;
+	}
 };
+
+class Derived:public Base{
+public:
+	void func() const override{
+		Base::func();
+		std::cout<<"fuck"<<std::endl;
+	}
+};
+
 
 int main(void)
 {
-    printf("%p\n",&Test::x);
-    printf("%p\n",&Test::y);
-    // printf("%p\n",&Test::~Test);
-    printf("%p\n",&Test::z);
-    return 0;
+	Derived item;
+	item.func();
+	return 0;
 }
