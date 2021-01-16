@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1590327039 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_18\share_ptr\main.cpp
+	<iostream>
+	<string>
+	"Share_ptr.h"
+
+1590326990 c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_18\share_ptr\share_ptr.h
+	<utility>
+	<stdexcept>
+	<iostream>
+

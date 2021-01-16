@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1568950215 source:c:\users\yexin\desktop\c and c++\essential c++\essential c++ source files\chapter 2\seq_show\main.cpp
+	<iostream>
+	<vector>
+	"seq_num.h"
+
+1568949793 c:\users\yexin\desktop\c and c++\essential c++\essential c++ source files\chapter 2\seq_show\seq_num.h
+

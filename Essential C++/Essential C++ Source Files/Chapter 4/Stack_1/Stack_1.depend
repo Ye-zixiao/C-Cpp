@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1569985533 source:c:\users\yexin\desktop\c and c++\essential c++\essential c++ source files\chapter 4\stack_1\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"Stack.h"
+
+1569985578 c:\users\yexin\desktop\c and c++\essential c++\essential c++ source files\chapter 4\stack_1\stack.h
+	<vector>
+	<string>
+
+1569984752 source:c:\users\yexin\desktop\c and c++\essential c++\essential c++ source files\chapter 4\stack_1\stack.c
+	<iostream>
+	<vector>
+	<string>
+	"Stack.h"
+

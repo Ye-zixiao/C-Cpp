@@ -1,0 +1,5 @@
+﻿  Non_Type_Template.cpp
+C:\Users\yexin\Desktop\C and C++\Essential C++\Essential C++ Source Files\Chapter 6\Non_Type_Template\Non_Type_Template.cpp(102,34): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\yexin\Desktop\C and C++\Essential C++\Essential C++ Source Files\Chapter 6\Non_Type_Template\Non_Type_Template.cpp(97): message : 在编译 类 模板 成员函数“std::ostream &Norm_num<10,1>::print(std::ostream &) const”时
+C:\Users\yexin\Desktop\C and C++\Essential C++\Essential C++ Source Files\Chapter 6\Non_Type_Template\Non_Type_Template.cpp(150): message : 查看对正在编译的 类 模板 实例化“Norm_num<10,1>”的引用
+  Non_Type_Template.vcxproj -> C:\Users\yexin\Desktop\C and C++\Essential C++\Essential C++ Source Files\Chapter 6\Non_Type_Template\Debug\Non_Type_Template.exe

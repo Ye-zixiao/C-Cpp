@@ -1,0 +1,1 @@
+The average of your input numbers is 3.33

@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1588341903 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_15\query\main.cpp
+	<iostream>
+	"Query.h"
+
+1588344347 c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_15\query\query.h
+	<iostream>
+	<memory>
+	<string>
+	"TextQuery.h"
+
+1588320875 c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_15\query\textquery.h
+	<unordered_map>
+	<string>
+	<vector>
+	<memory>
+	<set>
+	<fstream>
+	<sstream>
+
+1588320913 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_15\query\textquery.cpp
+	"TextQuery.h"
+
+1588344361 source:c:\users\yexin\desktop\c_cpp\c++_primer\c++ language source files\capter_15\query\query.cpp
+	"Query.h"
+
